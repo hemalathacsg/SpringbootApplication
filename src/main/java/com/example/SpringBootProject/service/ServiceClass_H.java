@@ -1,6 +1,7 @@
 package com.example.SpringBootProject.service;
 import com.example.SpringBootProject.NoSuchIdPresentException;
 import com.example.SpringBootProject.entity.Brand_H;
+import com.example.SpringBootProject.entity.Dummy2;
 import com.example.SpringBootProject.entity.DummyData;
 import com.example.SpringBootProject.entity.Product_H;
 import com.example.SpringBootProject.repository.*;
@@ -26,6 +27,8 @@ public class ServiceClass_H {
     private BrandRepository_H brandRepositoryH;
     @Autowired
     private Prod2Repository_H prod2RepositoryH;
+    @Autowired
+    private Dummy2Repository dummy2Repository;
     @Autowired
             private DummyRepo dummyRepo;
     public List<DummyData> getAllEmpList(){
@@ -77,7 +80,26 @@ public class ServiceClass_H {
             return empRepositoryH.findById(id) .get().getBrandList().stream().collect(Collectors.toMap(Brand_H::getName, s -> s.getProduct2List().size()));
         }
   }
+  //get dummy2 data
+  public List<Dummy2> getDummy2Data(){
+        return dummy2Repository.findAll();
+  }
+    //update dummy2 data
+    public Dummy2 updateDummy2Data(int id,Dummy2 user){
+        Dummy2 usertoUpdate=dummy2Repository.findById(id).get();
+        usertoUpdate.setName(user.getName());
+        return dummy2Repository.save(usertoUpdate);
+    }
 
+    //delete dummy2 data
+    public void deleteDummy2Data(int id){
+         dummy2Repository.deleteById(id);
+    }
+
+    //add dummy2 data
+    public Dummy2 addDummy2Data(Dummy2 user){
+        return dummy2Repository.save(user);
+    }
 }
 
 

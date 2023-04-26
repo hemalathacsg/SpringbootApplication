@@ -1,5 +1,6 @@
 package com.example.SpringBootProject.controller;
 import com.example.SpringBootProject.entity.Brand_H;
+import com.example.SpringBootProject.entity.Dummy2;
 import com.example.SpringBootProject.entity.DummyData;
 import com.example.SpringBootProject.entity.Product_H;
 import com.example.SpringBootProject.service.ServiceClass_H;
@@ -50,6 +51,27 @@ public class Controller_H {
     public DummyData addEmp(@RequestBody  DummyData emp){
         return cs.addEmp(emp);
     }
+
+
+    ///perfomring some dummy oeprtaions for practise
+    @GetMapping("/getDummy2Data")
+    public List<Dummy2> getDummy2Data(){
+        return cs.getDummy2Data();
+    }
+    @PostMapping("/addDummy2Data")
+    public Dummy2 addDummy2Data(@RequestBody Dummy2 user){
+        return cs.addDummy2Data(user);
+    }
+    @DeleteMapping("/deleteDummy2Data/{id}")
+    public void deleteDummy2Data(@PathVariable int id){
+        cs.deleteDummy2Data(id);
+    }
+
+    @PutMapping("/updateDummy2Data/{id}")
+    public Dummy2 updateDummy2Data(@PathVariable int id, @RequestBody Dummy2 user){
+        return cs.updateDummy2Data(id, user);
+    }
+
 
 }
 
